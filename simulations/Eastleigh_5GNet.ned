@@ -24,9 +24,9 @@ network Eastleigh_5GNet
     @display("bgi=background/eastleigh,c;bgb=700,700;bgu=m");
     submodules:
         gNodeB: gNodeB {
-            @display("p=511.104,284.41602");
+            @display("p=468.864,326.656");
         }
         nrUe: NRUe {
-            @display("p=439.29602,416.768");
+            @display("p=359.04,463.23203");
         }
 }
