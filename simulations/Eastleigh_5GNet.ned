@@ -15,10 +15,18 @@
 
 package _5g_mmwave.simulations;
 
+import simu5g.nodes.NR.NRUe;
 import simu5g.nodes.NR.gNodeB;
 
 
 network Eastleigh_5GNet
 {
     @display("bgi=background/eastleigh,c;bgb=700,700;bgu=m");
+    submodules:
+        gNodeB: gNodeB {
+            @display("p=511.104,284.41602");
+        }
+        nrUe: NRUe {
+            @display("p=439.29602,416.768");
+        }
 }
