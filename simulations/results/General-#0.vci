@@ -1,0 +1,1583 @@
+file 7513264 1712346683                                         
+version 3
+run General-0-20240405-20:49:38-17276
+attr configname General
+attr datetime 20240405-20:49:38
+attr datetimef 20240405-204938
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Eastleigh_5GNet
+attr processid 17276
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../images;../../inet4.5/images;../../simu5g/images
+config network Eastleigh_5GNet
+config sim-time-limit 20s
+config *.bgCell.*.isNr true
+config *.bgCell.*.carrierFrequency default
+config *.bgCell.*.numBands default
+config *.bgCell.*.txPower default
+config *.bgCell.*.fading_type default
+config *.bgCell.*.scenario default
+config *.bgCell.*.nodeb_height default
+config *.bgCell.*.building_height 7
+config **.ueTxPower default
+config **.eNodeBTxPower default
+config *.gnb*.txPower default
+config *.gnb*.cellularNic.channelModel[*].nodeb_height default
+config *.gnb*.cellularNic.channelModel[*].building_height 7
+config *.gnb*.*.channelModel[*].antennaGainEnB default
+config *.gnb*.*.channelModel[*].antennaGainUe default
+config *.nrUe*.cellularNic.channelModel[*].nodeb_height default
+config *.nrUe*.*.channelModel[*].building_height 7
+config *.nrUe*.*.channelModel[*].antennaGainEnB default
+config *.nrUe*.*.channelModel[*].antennaGainUe default
+config *.carrierAggregation.numComponentCarriers default
+config *.carrierAggregation.componentCarrier[0].numerologyIndex default
+config *.carrierAggregation.componentCarrier[0].carrierFrequency default
+config *.carrierAggregation.componentCarrier[0].numBands default
+config *.nrUe*.macCellId 0
+config *.nrUe*.masterId 0
+config *.nrUe*.nrMacCellId 1
+config *.nrUe*.nrMasterId 1
+config **.dynamicCellAssociation true
+config **.enableHandover true
+config *.gnb*.numX2Apps 1
+config *.gnb*.x2App[*].server.localPort "5000 + ancestorIndex(1)"
+config *.gnb0.x2App[0].client.connectAddress "\"gnb1%x2ppp0\""
+config *.gnb1.x2App[0].client.connectAddress "\"gnb0%x2ppp0\""
+config *.nrUe*.numApps 1
+config *.server.numApps 2
+config *.server.app[*].typename CbrReceiver
+config *.server.app[*].localPort "3000 + ancestorIndex(0)"
+config *.nrUe*.app[*].typename CbrSender
+config *.nrUe*.app[*].PacketSize 100
+config *.nrUe*.app[*].sampling_time 0.02s
+config *.nrUe*.app[*].destAddress "\"server\""
+config *.nrUe*.app[*].destPort "3000 + ancestorIndex(0)"
+config *.nrUe*.app[*].localPort 3088+ancestorIndex(0)
+config *.nrUe*.app[*].startTime uniform(0s,0.02s)
+config *.nrUe*.app[*].finishTime uniform(19.9s,19.92s)
+
+vector 0 Eastleigh_5GNet.server.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 1 Eastleigh_5GNet.server.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 2 Eastleigh_5GNet.server.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 3 Eastleigh_5GNet.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 4 Eastleigh_5GNet.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 5 Eastleigh_5GNet.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 6 Eastleigh_5GNet.router.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 7 Eastleigh_5GNet.router.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 8 Eastleigh_5GNet.router.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 9 Eastleigh_5GNet.router.ppp[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 10 Eastleigh_5GNet.router.ppp[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 11 Eastleigh_5GNet.router.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 12 Eastleigh_5GNet.upf.ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 13 Eastleigh_5GNet.upf.ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 14 Eastleigh_5GNet.upf.ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 15 Eastleigh_5GNet.upf.ppp[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 16 Eastleigh_5GNet.upf.ppp[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 17 Eastleigh_5GNet.upf.ppp[1].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 18 Eastleigh_5GNet.upf.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 19 Eastleigh_5GNet.upf.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 20 Eastleigh_5GNet.upf.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 21 Eastleigh_5GNet.upf.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 22 Eastleigh_5GNet.upf.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 23 Eastleigh_5GNet.upf.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 24 Eastleigh_5GNet.gnb0.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 25 Eastleigh_5GNet.gnb0.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 26 Eastleigh_5GNet.gnb0.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 27 Eastleigh_5GNet.gnb0.x2ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 28 Eastleigh_5GNet.gnb0.x2ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 29 Eastleigh_5GNet.gnb0.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 30 Eastleigh_5GNet.gnb0.pppMEHostIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 31 Eastleigh_5GNet.gnb0.pppMEHostIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 32 Eastleigh_5GNet.gnb0.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 33 Eastleigh_5GNet.gnb0.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 34 Eastleigh_5GNet.gnb0.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 35 Eastleigh_5GNet.gnb0.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 36 Eastleigh_5GNet.gnb1.pppIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 37 Eastleigh_5GNet.gnb1.pppIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 38 Eastleigh_5GNet.gnb1.pppIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 39 Eastleigh_5GNet.gnb1.x2ppp[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 40 Eastleigh_5GNet.gnb1.x2ppp[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 41 Eastleigh_5GNet.gnb1.x2ppp[0].ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 42 Eastleigh_5GNet.gnb1.pppMEHostIf.queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 43 Eastleigh_5GNet.gnb1.pppMEHostIf.queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 44 Eastleigh_5GNet.gnb1.pppMEHostIf.ppp transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "tx state"
+vector 45 Eastleigh_5GNet.gnb1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 46 Eastleigh_5GNet.gnb1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 47 Eastleigh_5GNet.gnb1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 48 Eastleigh_5GNet.nrUe.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 49 Eastleigh_5GNet.nrUe.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 50 Eastleigh_5GNet.nrUe.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 51 Eastleigh_5GNet.nrUe1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 52 Eastleigh_5GNet.nrUe1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 53 Eastleigh_5GNet.nrUe1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 54 Eastleigh_5GNet.nrUe.cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 55 Eastleigh_5GNet.nrUe.cellularNic.nrChannelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 56 Eastleigh_5GNet.nrUe.cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 57 Eastleigh_5GNet.nrUe1.cellularNic.phy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 58 Eastleigh_5GNet.nrUe1.cellularNic.nrChannelModel[0] distance:vector ETV
+attr recordingmode vector
+attr source distance
+attr title "distance between UE and serving base station"
+attr unit meters
+vector 59 Eastleigh_5GNet.nrUe1.cellularNic.nrPhy servingCell:vector ETV
+attr recordingmode vector
+attr source servingCell
+attr title "ID of the serving eNodeB for the UE"
+attr unit ""
+vector 60 Eastleigh_5GNet.gnb0.sctp "Throughput of Association 29" ETV
+vector 61 Eastleigh_5GNet.gnb1.sctp "Throughput of Association 30" ETV
+vector 62 Eastleigh_5GNet.gnb0.sctp "Throughput of Association 6" ETV
+vector 63 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 6:10.0.0.26" ETV
+vector 64 Eastleigh_5GNet.gnb1.sctp "Throughput of Association 10" ETV
+vector 65 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 10:10.0.0.25" ETV
+vector 66 Eastleigh_5GNet.gnb0.x2ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 67 Eastleigh_5GNet.gnb0.x2ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 68 Eastleigh_5GNet.gnb0.x2ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 69 Eastleigh_5GNet.gnb0.x2ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 70 Eastleigh_5GNet.gnb0.x2ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 71 Eastleigh_5GNet.gnb1.x2ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 72 Eastleigh_5GNet.gnb1.x2ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 73 Eastleigh_5GNet.gnb1.x2ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 74 Eastleigh_5GNet.gnb1.x2ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 75 Eastleigh_5GNet.gnb1.x2ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 76 Eastleigh_5GNet.gnb1.x2ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 77 Eastleigh_5GNet.gnb1.x2ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 78 Eastleigh_5GNet.gnb0.x2ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 79 Eastleigh_5GNet.gnb0.x2ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 80 Eastleigh_5GNet.gnb1.sctp "Throughput of Association 30" ETV
+vector 81 Eastleigh_5GNet.gnb1.sctp "Peer Rwnd 30" ETV
+vector 82 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 31:10.0.0.17" ETV
+vector 83 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 31:10.0.0.10" ETV
+vector 84 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 31:10.0.0.25" ETV
+vector 85 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 31:10.0.0.29" ETV
+vector 86 Eastleigh_5GNet.gnb0.sctp "Throughput of Association 29" ETV
+vector 87 Eastleigh_5GNet.gnb0.sctp "Peer Rwnd 29" ETV
+vector 88 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 32:10.0.0.18" ETV
+vector 89 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 32:10.0.0.14" ETV
+vector 90 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 32:10.0.0.26" ETV
+vector 91 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 32:10.0.0.33" ETV
+vector 92 Eastleigh_5GNet.gnb0.sctp "Peer Rwnd 6" ETV
+vector 93 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 6:10.0.0.18" ETV
+vector 94 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 6:10.0.0.14" ETV
+vector 95 Eastleigh_5GNet.gnb0.sctp "Fast Recovery State 6:10.0.0.33" ETV
+vector 96 Eastleigh_5GNet.gnb1.sctp "Peer Rwnd 10" ETV
+vector 97 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 10:10.0.0.17" ETV
+vector 98 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 10:10.0.0.10" ETV
+vector 99 Eastleigh_5GNet.gnb1.sctp "Fast Recovery State 10:10.0.0.29" ETV
+vector 100 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 31:10.0.0.10" ETV
+vector 101 Eastleigh_5GNet.gnb1.sctp "Congestion Window 31:10.0.0.10" ETV
+vector 102 Eastleigh_5GNet.gnb1.sctp "Bandwidth 31:10.0.0.10" ETV
+vector 103 Eastleigh_5GNet.gnb1.sctp "HB Sent 31:10.0.0.10" ETV
+vector 104 Eastleigh_5GNet.gnb1.sctp "RTO 31:10.0.0.10" ETV
+vector 105 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 31:10.0.0.17" ETV
+vector 106 Eastleigh_5GNet.gnb1.sctp "Congestion Window 31:10.0.0.17" ETV
+vector 107 Eastleigh_5GNet.gnb1.sctp "Bandwidth 31:10.0.0.17" ETV
+vector 108 Eastleigh_5GNet.gnb1.sctp "HB Sent 31:10.0.0.17" ETV
+vector 109 Eastleigh_5GNet.gnb1.sctp "RTO 31:10.0.0.17" ETV
+vector 110 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 31:10.0.0.25" ETV
+vector 111 Eastleigh_5GNet.gnb1.sctp "Congestion Window 31:10.0.0.25" ETV
+vector 112 Eastleigh_5GNet.gnb1.sctp "Bandwidth 31:10.0.0.25" ETV
+vector 113 Eastleigh_5GNet.gnb1.sctp "RTO 31:10.0.0.25" ETV
+vector 114 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 31:10.0.0.29" ETV
+vector 115 Eastleigh_5GNet.gnb1.sctp "Congestion Window 31:10.0.0.29" ETV
+vector 116 Eastleigh_5GNet.gnb1.sctp "Bandwidth 31:10.0.0.29" ETV
+vector 117 Eastleigh_5GNet.gnb1.sctp "HB Sent 31:10.0.0.29" ETV
+vector 118 Eastleigh_5GNet.gnb1.sctp "RTO 31:10.0.0.29" ETV
+vector 119 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 32:10.0.0.14" ETV
+vector 120 Eastleigh_5GNet.gnb0.sctp "Congestion Window 32:10.0.0.14" ETV
+vector 121 Eastleigh_5GNet.gnb0.sctp "Bandwidth 32:10.0.0.14" ETV
+vector 122 Eastleigh_5GNet.gnb0.sctp "HB Sent 32:10.0.0.14" ETV
+vector 123 Eastleigh_5GNet.gnb0.sctp "RTO 32:10.0.0.14" ETV
+vector 124 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 32:10.0.0.18" ETV
+vector 125 Eastleigh_5GNet.gnb0.sctp "Congestion Window 32:10.0.0.18" ETV
+vector 126 Eastleigh_5GNet.gnb0.sctp "Bandwidth 32:10.0.0.18" ETV
+vector 127 Eastleigh_5GNet.gnb0.sctp "HB Sent 32:10.0.0.18" ETV
+vector 128 Eastleigh_5GNet.gnb0.sctp "RTO 32:10.0.0.18" ETV
+vector 129 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 32:10.0.0.26" ETV
+vector 130 Eastleigh_5GNet.gnb0.sctp "Congestion Window 32:10.0.0.26" ETV
+vector 131 Eastleigh_5GNet.gnb0.sctp "Bandwidth 32:10.0.0.26" ETV
+vector 132 Eastleigh_5GNet.gnb0.sctp "RTO 32:10.0.0.26" ETV
+vector 133 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 32:10.0.0.33" ETV
+vector 134 Eastleigh_5GNet.gnb0.sctp "Congestion Window 32:10.0.0.33" ETV
+vector 135 Eastleigh_5GNet.gnb0.sctp "Bandwidth 32:10.0.0.33" ETV
+vector 136 Eastleigh_5GNet.gnb0.sctp "HB Sent 32:10.0.0.33" ETV
+vector 137 Eastleigh_5GNet.gnb0.sctp "RTO 32:10.0.0.33" ETV
+vector 138 Eastleigh_5GNet.gnb0.sctp "HB ACK Sent 6:10.0.0.26" ETV
+vector 139 Eastleigh_5GNet.gnb0.sctp "HB Received 6:10.0.0.26" ETV
+vector 140 Eastleigh_5GNet.gnb1.sctp "HB ACK Sent 10:10.0.0.25" ETV
+vector 141 Eastleigh_5GNet.gnb1.sctp "HB Received 10:10.0.0.25" ETV
+vector 142 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 6:10.0.0.14" ETV
+vector 143 Eastleigh_5GNet.gnb0.sctp "Congestion Window 6:10.0.0.14" ETV
+vector 144 Eastleigh_5GNet.gnb0.sctp "Bandwidth 6:10.0.0.14" ETV
+vector 145 Eastleigh_5GNet.gnb0.sctp "HB Sent 6:10.0.0.14" ETV
+vector 146 Eastleigh_5GNet.gnb0.sctp "RTO 6:10.0.0.14" ETV
+vector 147 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 6:10.0.0.18" ETV
+vector 148 Eastleigh_5GNet.gnb0.sctp "Congestion Window 6:10.0.0.18" ETV
+vector 149 Eastleigh_5GNet.gnb0.sctp "Bandwidth 6:10.0.0.18" ETV
+vector 150 Eastleigh_5GNet.gnb0.sctp "HB Sent 6:10.0.0.18" ETV
+vector 151 Eastleigh_5GNet.gnb0.sctp "RTO 6:10.0.0.18" ETV
+vector 152 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 6:10.0.0.26" ETV
+vector 153 Eastleigh_5GNet.gnb0.sctp "Congestion Window 6:10.0.0.26" ETV
+vector 154 Eastleigh_5GNet.gnb0.sctp "Bandwidth 6:10.0.0.26" ETV
+vector 155 Eastleigh_5GNet.gnb0.sctp "RTO 6:10.0.0.26" ETV
+vector 156 Eastleigh_5GNet.gnb0.sctp "Slow Start Threshold 6:10.0.0.33" ETV
+vector 157 Eastleigh_5GNet.gnb0.sctp "Congestion Window 6:10.0.0.33" ETV
+vector 158 Eastleigh_5GNet.gnb0.sctp "Bandwidth 6:10.0.0.33" ETV
+vector 159 Eastleigh_5GNet.gnb0.sctp "HB Sent 6:10.0.0.33" ETV
+vector 160 Eastleigh_5GNet.gnb0.sctp "RTO 6:10.0.0.33" ETV
+vector 161 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 10:10.0.0.10" ETV
+vector 162 Eastleigh_5GNet.gnb1.sctp "Congestion Window 10:10.0.0.10" ETV
+vector 163 Eastleigh_5GNet.gnb1.sctp "Bandwidth 10:10.0.0.10" ETV
+vector 164 Eastleigh_5GNet.gnb1.sctp "HB Sent 10:10.0.0.10" ETV
+vector 165 Eastleigh_5GNet.gnb1.sctp "RTO 10:10.0.0.10" ETV
+vector 166 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 10:10.0.0.17" ETV
+vector 167 Eastleigh_5GNet.gnb1.sctp "Congestion Window 10:10.0.0.17" ETV
+vector 168 Eastleigh_5GNet.gnb1.sctp "Bandwidth 10:10.0.0.17" ETV
+vector 169 Eastleigh_5GNet.gnb1.sctp "HB Sent 10:10.0.0.17" ETV
+vector 170 Eastleigh_5GNet.gnb1.sctp "RTO 10:10.0.0.17" ETV
+vector 171 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 10:10.0.0.25" ETV
+vector 172 Eastleigh_5GNet.gnb1.sctp "Congestion Window 10:10.0.0.25" ETV
+vector 173 Eastleigh_5GNet.gnb1.sctp "Bandwidth 10:10.0.0.25" ETV
+vector 174 Eastleigh_5GNet.gnb1.sctp "RTO 10:10.0.0.25" ETV
+vector 175 Eastleigh_5GNet.gnb1.sctp "Slow Start Threshold 10:10.0.0.29" ETV
+vector 176 Eastleigh_5GNet.gnb1.sctp "Congestion Window 10:10.0.0.29" ETV
+vector 177 Eastleigh_5GNet.gnb1.sctp "Bandwidth 10:10.0.0.29" ETV
+vector 178 Eastleigh_5GNet.gnb1.sctp "HB Sent 10:10.0.0.29" ETV
+vector 179 Eastleigh_5GNet.gnb1.sctp "RTO 10:10.0.0.29" ETV
+vector 180 Eastleigh_5GNet.gnb0.sctp "HB ACK Received 32:10.0.0.26" ETV
+vector 181 Eastleigh_5GNet.gnb0.sctp "RTT 32:10.0.0.26" ETV
+vector 182 Eastleigh_5GNet.gnb1.sctp "HB ACK Received 31:10.0.0.25" ETV
+vector 183 Eastleigh_5GNet.gnb1.sctp "RTT 31:10.0.0.25" ETV
+vector 184 Eastleigh_5GNet.gnb0.sctp "HB ACK Sent 32:10.0.0.26" ETV
+vector 185 Eastleigh_5GNet.gnb0.sctp "HB Received 32:10.0.0.26" ETV
+vector 186 Eastleigh_5GNet.gnb1.sctp "HB ACK Sent 31:10.0.0.25" ETV
+vector 187 Eastleigh_5GNet.gnb1.sctp "HB Received 31:10.0.0.25" ETV
+vector 188 Eastleigh_5GNet.gnb0.sctp "HB ACK Received 6:10.0.0.26" ETV
+vector 189 Eastleigh_5GNet.gnb0.sctp "RTT 6:10.0.0.26" ETV
+vector 190 Eastleigh_5GNet.gnb1.sctp "HB ACK Received 10:10.0.0.25" ETV
+vector 191 Eastleigh_5GNet.gnb1.sctp "RTT 10:10.0.0.25" ETV
+vector 192 Eastleigh_5GNet.bgCell.bgScheduler bgAvgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source bgAvgServedBlocksUl
+attr title "Average UL served blocks for background cells"
+attr unit ""
+vector 193 Eastleigh_5GNet.bgCell.bgScheduler bgAvgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source bgAvgServedBlocksDl
+attr title "Average DL served blocks for background cells"
+attr unit ""
+vector 194 Eastleigh_5GNet.gnb0.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 195 Eastleigh_5GNet.gnb0.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 196 Eastleigh_5GNet.gnb1.cellularNic.mac avgServedBlocksUl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksUl
+attr title "Avg Served Blocks Ul"
+attr unit blocks
+vector 197 Eastleigh_5GNet.gnb1.cellularNic.mac avgServedBlocksDl:vector ETV
+attr recordingmode vector
+attr source avgServedBlocksDl
+attr title "Avg Served Blocks Dl"
+attr unit blocks
+vector 198 Eastleigh_5GNet.nrUe.cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 199 Eastleigh_5GNet.nrUe.cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 200 Eastleigh_5GNet.gnb1.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 201 Eastleigh_5GNet.nrUe1.cellularNic.nrChannelModel[0] measuredSinrUl:vector ETV
+attr recordingmode vector
+attr source measuredSinrUl
+attr title "SINR measured at feedback computation, UL"
+attr unit dB
+vector 202 Eastleigh_5GNet.nrUe1.cellularNic.nrChannelModel[0] measuredSinrDl:vector ETV
+attr recordingmode vector
+attr source measuredSinrDl
+attr title "SINR measured at feedback computation, DL"
+attr unit dB
+vector 203 Eastleigh_5GNet.gnb0.cellularNic.mac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 204 Eastleigh_5GNet.nrUe1.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 205 Eastleigh_5GNet.nrUe1.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 206 Eastleigh_5GNet.nrUe1.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 207 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 208 Eastleigh_5GNet.nrUe1.cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 209 Eastleigh_5GNet.nrUe1.cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 210 Eastleigh_5GNet.gnb0.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 211 Eastleigh_5GNet.nrUe1.cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 212 Eastleigh_5GNet.nrUe1.cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 213 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 214 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 215 Eastleigh_5GNet.nrUe1.cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 216 Eastleigh_5GNet.nrUe1.cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 217 Eastleigh_5GNet.nrUe.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 218 Eastleigh_5GNet.nrUe.cellularNic.pdcpRrc receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 219 Eastleigh_5GNet.nrUe.cellularNic.pdcpRrc sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 220 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 221 Eastleigh_5GNet.nrUe.cellularNic.nrMac receivedPacketFromUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromUpperLayer
+vector 222 Eastleigh_5GNet.nrUe.cellularNic.nrMac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 223 Eastleigh_5GNet.gnb1.cellularNic.mac sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 224 Eastleigh_5GNet.nrUe1.cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 225 Eastleigh_5GNet.gnb0.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 226 Eastleigh_5GNet.gnb0.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 227 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 228 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 229 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 230 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 231 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 232 Eastleigh_5GNet.gnb0.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 233 Eastleigh_5GNet.nrUe1.cellularNic.nrRlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 234 Eastleigh_5GNet.gnb0.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 235 Eastleigh_5GNet.gnb0.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 236 Eastleigh_5GNet.gnb0.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 237 Eastleigh_5GNet.gnb0.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 238 Eastleigh_5GNet.gnb0.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 239 Eastleigh_5GNet.gnb0.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 240 Eastleigh_5GNet.gnb0.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 241 Eastleigh_5GNet.gnb0.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 242 Eastleigh_5GNet.nrUe.cellularNic.nrMac receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 243 Eastleigh_5GNet.upf.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 244 Eastleigh_5GNet.upf.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 245 Eastleigh_5GNet.upf.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 246 Eastleigh_5GNet.upf.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 247 Eastleigh_5GNet.upf.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 248 Eastleigh_5GNet.upf.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 249 Eastleigh_5GNet.upf.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 250 Eastleigh_5GNet.upf.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 251 Eastleigh_5GNet.router.ppp[1].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 252 Eastleigh_5GNet.router.ppp[1].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 253 Eastleigh_5GNet.router.ppp[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 254 Eastleigh_5GNet.router.ppp[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 255 Eastleigh_5GNet.router.ppp[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 256 Eastleigh_5GNet.router.ppp[0].ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 257 Eastleigh_5GNet.router.ppp[0].ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 258 Eastleigh_5GNet.server.ppp[0].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 259 Eastleigh_5GNet.server.ppp[0].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 260 Eastleigh_5GNet.server.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 261 Eastleigh_5GNet.server.app[0] cbrReceivedBytes:vector ETV
+attr recordingmode vector
+attr source cbrReceivedBytesSignal
+attr title "Bytes received at the application level"
+attr unit Bps
+vector 262 Eastleigh_5GNet.server.app[0] cbrFrameDelay:vector ETV
+attr recordingmode vector
+attr source cbrFrameDelaySignal
+attr title "Cbr Frame Delay"
+attr unit s
+vector 263 Eastleigh_5GNet.server.app[0] cbrRcvdPkt:vector ETV
+attr recordingmode vector
+attr source cbrRcvdPkt
+attr title "Received packet ID"
+attr unit ""
+vector 264 Eastleigh_5GNet.nrUe1.cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 265 Eastleigh_5GNet.nrUe1.cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 266 Eastleigh_5GNet.nrUe1.cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 267 Eastleigh_5GNet.nrUe.cellularNic.nrMac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 268 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 269 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um sentPacketToLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToLowerLayer
+vector 270 Eastleigh_5GNet.nrUe.cellularNic.nrPhy averageCqiUl:vector ETV
+attr recordingmode vector
+attr source averageCqiUl
+attr title "Average Cqi reported in UL"
+attr unit cqi
+vector 271 Eastleigh_5GNet.nrUe.cellularNic.nrChannelModel[0] rcvdSinrUl:vector ETV
+attr recordingmode vector
+attr source rcvdSinrUl
+attr title "SINR measured at packet reception, UL"
+attr unit dB
+vector 272 Eastleigh_5GNet.nrUe.cellularNic.nrMac macDelayUl:vector ETV
+attr recordingmode vector
+attr source macDelayUl
+attr title "Delay at the MAC layer UL"
+attr unit s
+vector 273 Eastleigh_5GNet.gnb1.cellularNic.mac sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 274 Eastleigh_5GNet.gnb1.cellularNic.rlc.um receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 275 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcPduThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcPduThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 276 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcPduDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcPduDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 277 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcPduPacketLossUl:vector ETV
+attr recordingmode vector
+attr source rlcPduPacketLossUl
+attr title "rlc Packet Loss"
+attr unit ""
+vector 278 Eastleigh_5GNet.nrUe.cellularNic.nrMac harqErrorRate_1st_Ul:vector ETV
+attr recordingmode vector
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Ul (1st tx)"
+attr unit ""
+vector 279 Eastleigh_5GNet.nrUe.cellularNic.nrMac harqErrorRateUl:vector ETV
+attr recordingmode vector
+attr source harqErrorRateUl
+attr title "Harq Error Rate Ul"
+attr unit ""
+vector 280 Eastleigh_5GNet.nrUe.cellularNic.nrMac harqTxAttemptsUl:vector ETV
+attr recordingmode vector
+attr source harqTxAttemptsUl
+attr title "Harq Tx Attempts Ul"
+attr unit ""
+vector 281 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcThroughputUl:vector ETV
+attr recordingmode vector
+attr source rlcThroughputUl
+attr title "Throughput at the rlc layer UL"
+attr unit Bps
+vector 282 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcPacketLossTotal:vector ETV
+attr recordingmode vector
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss"
+attr unit ""
+vector 283 Eastleigh_5GNet.nrUe.cellularNic.nrRlc.um rlcDelayUl:vector ETV
+attr recordingmode vector
+attr source rlcDelayUl
+attr title "Delay at the rlc layer UL"
+attr unit s
+vector 284 Eastleigh_5GNet.gnb1.cellularNic.rlc.um sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 285 Eastleigh_5GNet.gnb1.cellularNic.pdcpRrc receivedPacketFromLowerLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source receivedPacketFromLowerLayer
+vector 286 Eastleigh_5GNet.gnb1.cellularNic.pdcpRrc sentPacketToUpperLayer:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source sentPacketToUpperLayer
+vector 287 Eastleigh_5GNet.gnb1.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 288 Eastleigh_5GNet.gnb1.pppIf.queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 289 Eastleigh_5GNet.gnb1.pppIf.queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 290 Eastleigh_5GNet.gnb1.pppIf.queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 291 Eastleigh_5GNet.gnb1.pppIf.ppp rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 292 Eastleigh_5GNet.gnb1.pppIf.ppp txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 293 Eastleigh_5GNet.upf.ppp[1].ppp rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 294 Eastleigh_5GNet.upf.ppp[1].ppp passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 295 Eastleigh_5GNet.gnb1.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 296 Eastleigh_5GNet.gnb1.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 297 Eastleigh_5GNet.upf.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 298 Eastleigh_5GNet.upf.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 299 Eastleigh_5GNet.router.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 300 Eastleigh_5GNet.router.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 301 Eastleigh_5GNet.gnb0.pppIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 302 Eastleigh_5GNet.gnb0.pppIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 303 Eastleigh_5GNet.server.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 304 Eastleigh_5GNet.server.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 305 Eastleigh_5GNet.router.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 306 Eastleigh_5GNet.router.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 307 Eastleigh_5GNet.upf.ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 308 Eastleigh_5GNet.upf.ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 309 Eastleigh_5GNet.upf.ppp[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 310 Eastleigh_5GNet.upf.ppp[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 311 Eastleigh_5GNet.gnb0.x2ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 312 Eastleigh_5GNet.gnb0.x2ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 313 Eastleigh_5GNet.gnb0.pppMEHostIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 314 Eastleigh_5GNet.gnb0.pppMEHostIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+86	56686 22 51 51 0.0000001292 0.0000001292 1 0 0 0 0
+142	56708 28 142 142 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+143	56736 27 142 142 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+144	56763 29 142 142 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+146	56792 24 142 142 0.0000006872 0.0000006872 1 3 3 3 9
+145	56816 24 142 142 0.0000006872 0.0000006872 1 1 1 1 1
+94	56840 22 62 62 0.0000003224 0.0000003224 1 0 0 0 0
+147	56862 28 142 142 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+148	56890 27 142 142 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+149	56917 29 142 142 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+151	56946 24 142 142 0.0000006872 0.0000006872 1 3 3 3 9
+150	56970 24 142 142 0.0000006872 0.0000006872 1 1 1 1 1
+93	56994 22 62 62 0.0000003224 0.0000003224 1 0 0 0 0
+152	57016 28 142 142 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+153	57044 27 142 142 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+154	57071 29 142 142 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+155	57100 48 142 224 0.0000006872 0.0000009952 2 1 3 4 10
+189	57148 31 224 224 0.0000009952 0.0000009952 1 3.08e-07 3.08e-07 3.08e-07 9.4864e-14
+139	57179 72 106 130 0.0000005648 0.0000006528 3 1 3 6 14
+138	57251 72 106 130 0.0000005648 0.0000006528 3 1 3 6 14
+188	57323 72 224 238 0.0000009952 0.0000010832 3 1 3 6 14
+63	57395 11 24 24 0 0 1 0 0 0 0
+156	57406 28 142 142 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+157	57434 27 142 142 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+158	57461 29 142 142 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+160	57490 24 142 142 0.0000006872 0.0000006872 1 3 3 3 9
+159	57514 24 142 142 0.0000006872 0.0000006872 1 1 1 1 1
+95	57538 22 62 62 0.0000003224 0.0000003224 1 0 0 0 0
+92	57560 26 62 62 0.0000003224 0.0000003224 1 65535 65535 65535 4294836225
+62	57586 11 24 24 0 0 1 0 0 0 0
+119	57597 27 75 75 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+120	57624 26 75 75 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+121	57650 28 75 75 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+123	57678 23 75 75 0.0000004708 0.0000004708 1 3 3 3 9
+122	57701 23 75 75 0.0000004708 0.0000004708 1 1 1 1 1
+89	57724 22 51 51 0.0000001292 0.0000001292 1 0 0 0 0
+124	57746 27 75 75 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+125	57773 26 75 75 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+126	57799 28 75 75 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+128	57827 23 75 75 0.0000004708 0.0000004708 1 3 3 3 9
+127	57850 23 75 75 0.0000004708 0.0000004708 1 1 1 1 1
+88	57873 22 51 51 0.0000001292 0.0000001292 1 0 0 0 0
+129	57895 27 75 75 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+130	57922 26 75 75 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+131	57948 28 75 75 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+132	57976 47 75 164 0.0000004708 0.0000007312 2 1 3 4 10
+181	58023 32 164 164 0.0000007312 0.0000007312 1 2.604e-07 2.604e-07 2.604e-07 6.780816e-14
+185	58055 72 188 212 0.0000008632 0.0000009512 3 1 3 6 14
+184	58127 72 188 212 0.0000008632 0.0000009512 3 1 3 6 14
+180	58199 72 164 180 0.0000007312 0.0000008192 3 1 3 6 14
+90	58271 22 51 51 0.0000001292 0.0000001292 1 0 0 0 0
+133	58293 27 75 75 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+134	58320 26 75 75 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+135	58346 28 75 75 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+137	58374 23 75 75 0.0000004708 0.0000004708 1 3 3 3 9
+136	58397 23 75 75 0.0000004708 0.0000004708 1 1 1 1 1
+91	58420 22 51 51 0.0000001292 0.0000001292 1 0 0 0 0
+87	58442 26 51 51 0.0000001292 0.0000001292 1 65535 65535 65535 4294836225
+60	58468 11 14 14 0 0 1 0 0 0 0
+vector 315 Eastleigh_5GNet.gnb1.x2ppp[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 316 Eastleigh_5GNet.gnb1.x2ppp[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 317 Eastleigh_5GNet.gnb1.pppMEHostIf.queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 318 Eastleigh_5GNet.gnb1.pppMEHostIf.queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+80	59371 22 50 50 0.0000001292 0.0000001292 1 0 0 0 0
+161	59393 28 143 143 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+162	59421 27 143 143 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+163	59448 29 143 143 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+165	59477 24 143 143 0.0000006872 0.0000006872 1 3 3 3 9
+164	59501 24 143 143 0.0000006872 0.0000006872 1 1 1 1 1
+98	59525 22 63 63 0.0000003224 0.0000003224 1 0 0 0 0
+166	59547 28 143 143 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+167	59575 27 143 143 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+168	59602 29 143 143 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+170	59631 24 143 143 0.0000006872 0.0000006872 1 3 3 3 9
+169	59655 24 143 143 0.0000006872 0.0000006872 1 1 1 1 1
+97	59679 22 63 63 0.0000003224 0.0000003224 1 0 0 0 0
+171	59701 28 143 143 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+172	59729 27 143 143 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+173	59756 29 143 143 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+174	59785 48 143 225 0.0000006872 0.0000009952 2 1 3 4 10
+191	59833 31 225 225 0.0000009952 0.0000009952 1 3.08e-07 3.08e-07 3.08e-07 9.4864e-14
+141	59864 72 107 131 0.0000005648 0.0000006528 3 1 3 6 14
+140	59936 72 107 131 0.0000005648 0.0000006528 3 1 3 6 14
+190	60008 72 225 239 0.0000009952 0.0000010832 3 1 3 6 14
+65	60080 11 25 25 0 0 1 0 0 0 0
+175	60091 28 143 143 0.0000006872 0.0000006872 1 65535 65535 65535 4294836225
+176	60119 27 143 143 0.0000006872 0.0000006872 1 8940 8940 8940 79923600
+177	60146 29 143 143 0.0000006872 0.0000006872 1 0.3725 0.3725 0.3725 0.13875625
+179	60175 24 143 143 0.0000006872 0.0000006872 1 3 3 3 9
+178	60199 24 143 143 0.0000006872 0.0000006872 1 1 1 1 1
+99	60223 22 63 63 0.0000003224 0.0000003224 1 0 0 0 0
+96	60245 26 63 63 0.0000003224 0.0000003224 1 65535 65535 65535 4294836225
+64	60271 11 25 25 0 0 1 0 0 0 0
+100	60282 27 74 74 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+101	60309 26 74 74 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+102	60335 28 74 74 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+104	60363 23 74 74 0.0000004708 0.0000004708 1 3 3 3 9
+103	60386 23 74 74 0.0000004708 0.0000004708 1 1 1 1 1
+83	60409 22 50 50 0.0000001292 0.0000001292 1 0 0 0 0
+105	60431 27 74 74 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+106	60458 26 74 74 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+107	60484 28 74 74 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+109	60512 23 74 74 0.0000004708 0.0000004708 1 3 3 3 9
+108	60535 23 74 74 0.0000004708 0.0000004708 1 1 1 1 1
+82	60558 22 50 50 0.0000001292 0.0000001292 1 0 0 0 0
+110	60580 27 74 74 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+111	60607 26 74 74 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+112	60633 28 74 74 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+113	60661 47 74 165 0.0000004708 0.0000007312 2 1 3 4 10
+183	60708 32 165 165 0.0000007312 0.0000007312 1 2.604e-07 2.604e-07 2.604e-07 6.780816e-14
+187	60740 72 189 213 0.0000008632 0.0000009512 3 1 3 6 14
+186	60812 72 189 213 0.0000008632 0.0000009512 3 1 3 6 14
+182	60884 72 165 181 0.0000007312 0.0000008192 3 1 3 6 14
+84	60956 22 50 50 0.0000001292 0.0000001292 1 0 0 0 0
+114	60978 27 74 74 0.0000004708 0.0000004708 1 65535 65535 65535 4294836225
+115	61005 26 74 74 0.0000004708 0.0000004708 1 8940 8940 8940 79923600
+116	61031 28 74 74 0.0000004708 0.0000004708 1 0.3725 0.3725 0.3725 0.13875625
+118	61059 23 74 74 0.0000004708 0.0000004708 1 3 3 3 9
+117	61082 23 74 74 0.0000004708 0.0000004708 1 1 1 1 1
+85	61105 22 50 50 0.0000001292 0.0000001292 1 0 0 0 0
+81	61127 26 50 50 0.0000001292 0.0000001292 1 65535 65535 65535 4294836225
+61	61153 11 19 19 0 0 1 0 0 0 0
+vector 319 Eastleigh_5GNet.nrUe.app[0] cbrGeneratedThroughtput:vector ETV
+attr recordingmode vector
+attr source cbrGeneratedThroughtputSignal
+attr title "Throughput generated by the application"
+attr unit Bps
+vector 320 Eastleigh_5GNet.nrUe1.app[0] cbrGeneratedThroughtput:vector ETV
+attr recordingmode vector
+attr source cbrGeneratedThroughtputSignal
+attr title "Throughput generated by the application"
+attr unit Bps
+0	61593 45 0 0 0 0 5 0 0 0 0
+1	61638 45 0 0 0 0 5 0 0 0 0
+2	61683 9 0 0 0 0 1 0 0 0 0
+3	61692 54999 0 325927 0 19.9260005028 1993 0 1992 1985028 2636778860
+4	116691 9 0 0 0 0 1 0 0 0 0
+5	116700 9 0 0 0 0 1 0 0 0 0
+6	116709 50166 0 325923 0 19.9260003448 1997 0 0 0 0
+7	166875 50166 0 325923 0 19.9260003448 1997 0 0 0 0
+8	217041 100251 0 325924 0 19.9260004528 3985 0 1 1992 1992
+9	317292 45 0 0 0 0 5 0 0 0 0
+10	317337 50 0 0 0 0 5 0 0 0 0
+11	317387 10 0 0 0 0 1 0 0 0 0
+12	317397 50 0 0 0 0 5 0 0 0 0
+13	317447 50 0 0 0 0 5 0 0 0 0
+14	317497 10 0 0 0 0 1 0 0 0 0
+15	317507 50 0 0 0 0 5 0 0 0 0
+16	317557 50 0 0 0 0 5 0 0 0 0
+17	317607 10 0 0 0 0 1 0 0 0 0
+18	317617 52163 0 325919 0 19.9260001868 1997 0 0 0 0
+19	369780 52163 0 325919 0 19.9260001868 1997 0 0 0 0
+20	421943 104236 0 325920 0 19.9260002948 3985 0 1 1992 1992
+21	526179 56992 0 325917 0 19.9260001868 1993 0 1992 1985028 2636778860
+22	583171 10 0 0 0 0 1 0 0 0 0
+23	583181 10 0 0 0 0 1 0 0 0 0
+24	583191 19133 0 325725 0 19.914 1001 0 0 0 0
+25	602324 19133 0 325725 0 19.914 1001 0 0 0 0
+26	621457 45148 0 325736 0 19.9140001368 1993 0 1 996 996
+27	666605 675 0 219 0 0.0000009892 33 0 4 36 80
+28	667280 719 0 219 0 0.0000009892 33 0 1536 13440 11243520
+29	667999 726 0 227 0 0.0000010332 33 0 1 16 16
+30	668725 50 0 0 0 0 5 0 0 0 0
+31	668775 50 0 0 0 0 5 0 0 0 0
+32	668825 10 0 0 0 0 1 0 0 0 0
+33	668835 10 0 0 0 0 1 0 0 0 0
+34	668845 10 0 0 0 0 1 0 0 0 0
+35	668855 10 0 0 0 0 1 0 0 0 0
+36	668865 19136 0 325907 0 19.926 1001 0 0 0 0
+37	688001 19136 0 325907 0 19.926 1001 0 0 0 0
+38	707137 45154 0 325914 0 19.9260001368 1993 0 1 996 996
+39	752291 675 0 218 0 0.0000009892 33 0 4 36 80
+40	752966 719 0 218 0 0.0000009892 33 0 1536 13440 11243520
+41	753685 726 0 226 0 0.0000010332 33 0 1 16 16
+42	754411 50 0 0 0 0 5 0 0 0 0
+43	754461 50 0 0 0 0 5 0 0 0 0
+44	754511 10 0 0 0 0 1 0 0 0 0
+45	754521 10 0 0 0 0 1 0 0 0 0
+46	754531 10 0 0 0 0 1 0 0 0 0
+47	754541 10 0 0 0 0 1 0 0 0 0
+48	754551 10 0 0 0 0 1 0 0 0 0
+49	754561 10 0 0 0 0 1 0 0 0 0
+50	754571 10 0 0 0 0 1 0 0 0 0
+51	754581 10 0 0 0 0 1 0 0 0 0
+52	754591 10 0 0 0 0 1 0 0 0 0
+53	754601 10 0 0 0 0 1 0 0 0 0
+54	754611 10 0 0 0 0 1 0 0 0 0
+55	754621 1268 0 326709 0 20 44 261.01965248487 357.38904420863 13604.991327257 4308880.133881
+56	755889 10 0 0 0 0 1 2 2 2 4
+57	755899 10 0 0 0 0 1 0 0 0 0
+58	755909 1268 0 326711 0 20 44 183.35040174628 268.34738788563 9937.351371902 2323809.1889224
+59	757177 10 0 0 0 0 1 1 1 1 1
+66	757187 383 32 216 0 0.0000009512 16 288 1376 7936 5148672
+67	757570 429 32 219 0 0.0000009892 16 0 1.7e-07 9.732e-07 9.866128e-14
+68	757999 385 32 219 0 0.0000009892 16 288 1376 7936 5148672
+69	758384 370 32 219 0 0.0000009892 16 36 172 992 80448
+70	758754 370 32 219 0 0.0000009892 16 43 179 1104 95120
+71	759124 383 33 217 0 0.0000009512 16 288 1376 7936 5148672
+72	759507 429 33 218 0 0.0000009892 16 0 1.7e-07 9.732e-07 9.866128e-14
+73	759936 385 33 218 0 0.0000009892 16 288 1376 7936 5148672
+74	760321 370 33 218 0 0.0000009892 16 36 172 992 80448
+75	760691 370 33 218 0 0.0000009892 16 43 179 1104 95120
+76	761061 383 46 235 0.0000001292 0.0000010832 16 43 179 1104 95120
+77	761444 383 46 235 0.0000001292 0.0000010832 16 36 172 992 80448
+78	761827 383 47 234 0.0000001292 0.0000010832 16 43 179 1104 95120
+79	762210 383 47 234 0.0000001292 0.0000010832 16 36 172 992 80448
+192	762593 401006 242 326689 0.001 20 20000 0 0 0 0
+193	1163599 401006 242 326689 0.001 20 20000 0 0 0 0
+194	1564605 401006 243 326690 0.001 20 20000 0 1 996 996
+195	1965611 401006 243 326690 0.001 20 20000 0 0 0 0
+196	2366617 401006 244 326691 0.001 20 20000 0 1 1992 1992
+197	2767623 401006 244 326691 0.001 20 20000 0 0 0 0
+198	3168629 113149 260 326698 0.002 20 3334 20.249338684976 20.249338684976 67511.295175707 1367059.0810743
+199	3281778 113149 260 326698 0.002 20 3334 48.719675178371 48.719675178371 162431.3970447 7913604.9027868
+200	3394927 129700 261 326699 0.002 20 6322 1 101 140782 11455342
+201	3524627 109815 262 326700 0.002 20 3334 39.98219110836 39.98219110836 133300.62515526 5329651.0698222
+202	3634442 113149 262 326700 0.002 20 3334 37.080770907557 37.080770907557 123627.2902058 4584195.2260431
+203	3747591 108622 263 326701 0.002 20 5326 1 133 136798 17622574
+204	3856213 31033 292 325569 0.005205050814 19.905205050814 996 108 108 107568 11617344
+205	3887246 31033 295 325572 0.005205050814 19.905205050814 996 128 128 127488 16318464
+206	3918279 31033 295 325572 0.005205050814 19.905205050814 996 129 129 128484 16574436
+207	3949312 31033 296 325573 0.005205050814 19.905205050814 996 129 129 128484 16574436
+208	3980345 52108 298 325662 0.005205050814 19.91 1992 131 131 260952 34184712
+209	4032453 41153 307 325665 0.006 19.91 1992 1 133 133464 17619240
+210	4073606 60235 323 325715 0.007 19.914 2988 1 1 2988 2988
+211	4133841 60236 340 325763 0.008 19.915 2988 1 1 2988 2988
+212	4194077 19083 358 325658 0.01 19.91 996 1 1 996 996
+213	4213160 39162 360 325718 0.01 19.914 1992 0 0 0 0
+214	4252322 21075 360 325660 0.01 19.91 996 131 131 130476 17092356
+215	4273397 20079 366 325666 0.01 19.91 996 15 15 14940 224100
+216	4293476 34023 376 325680 0.011 19.911 996 39.432510411538 39.432510411538 39274.780369892 1548703.1858466
+217	4327499 31035 379 325683 0.011545680189 19.911545680189 996 108 108 107568 11617344
+218	4358534 31035 382 325686 0.011545680189 19.911545680189 996 128 128 127488 16318464
+219	4389569 31035 382 325686 0.011545680189 19.911545680189 996 129 129 128484 16574436
+220	4420604 31035 383 325687 0.011545680189 19.911545680189 996 129 129 128484 16574436
+221	4451639 73187 385 325852 0.011545680189 19.922 2988 34 131 262944 28005528
+222	4524826 63227 392 325857 0.012 19.922 2988 1 101 137448 11452008
+223	4588053 97933 410 325897 0.013 19.926 4980 1 1 4980 4980
+224	4685986 24063 413 325715 0.014 19.914 996 0.004 0.004 3.984 0.015936
+225	4710049 22071 413 325715 0.014 19.914 996 131 131 130476 17092356
+226	4732120 22071 416 325718 0.014 19.914 996 131 131 130476 17092356
+227	4754191 20079 416 325718 0.014 19.914 996 0 0 0 0
+228	4774270 24063 416 325718 0.014 19.914 996 0.004 0.004 3.984 0.015936
+229	4798333 33905 416 325718 0.014 19.914 996 6451.9433564327 9214.2857142857 6439919.8851163 41649484077.197
+230	4832238 20079 416 325718 0.014 19.914 996 0 0 0 0
+231	4852317 33027 416 325718 0.014 19.914 996 0.008794949186 0.008794949186 8.7597693892561 0.077041726659585
+232	4885344 22071 416 325718 0.014 19.914 996 129 129 128484 16574436
+233	4907415 20079 416 325718 0.014 19.914 996 0 0 0 0
+234	4927494 22071 417 325719 0.014 19.914 996 129 129 128484 16574436
+235	4949565 22071 417 325719 0.014 19.914 996 128 128 127488 16318464
+236	4971636 22071 421 325723 0.014 19.914 996 144 144 143424 20653056
+237	4993707 23067 423 325725 0.014 19.914 996 1312 1312 1306752 1714458624
+238	5016774 20079 423 325725 0.014 19.914 996 0 0 0 0
+239	5036853 23067 423 325725 0.014 19.914 996 1312 1312 1306752 1714458624
+240	5059920 22071 423 325725 0.014 19.914 996 164 164 163344 26788416
+241	5081991 22071 423 325725 0.014 19.914 996 171 171 170316 29124036
+242	5104062 100402 437 325941 0.014 19.927 4980 1 1 4980 4980
+243	5204464 29043 439 325737 0.0140001868 19.9140001868 996 171 171 170316 29124036
+244	5233507 29043 439 325737 0.0140001868 19.9140001868 996 164 164 163344 26788416
+245	5262550 58089 441 325917 0.0140001868 19.9260001868 1992 144 144 286848 41306112
+246	5320639 60081 443 325919 0.0140001868 19.9260001868 1992 1024 1024 2039808 2088763392
+247	5380720 54105 443 325919 0.0140001868 19.9260001868 1992 0 0 0 0
+248	5434825 60081 443 325919 0.0140001868 19.9260001868 1992 1024 1024 2039808 2088763392
+249	5494906 58089 443 325919 0.0140001868 19.9260001868 1992 128 128 254976 32636928
+250	5552995 58089 443 325919 0.0140001868 19.9260001868 1992 135 135 268920 36304200
+251	5611084 58089 445 325921 0.0140003448 19.9260003448 1992 135 135 268920 36304200
+252	5669173 58089 445 325921 0.0140003448 19.9260003448 1992 128 128 254976 32636928
+253	5727262 60081 447 325923 0.0140003448 19.9260003448 1992 1024 1024 2039808 2088763392
+254	5787343 54105 447 325923 0.0140003448 19.9260003448 1992 0 0 0 0
+255	5841448 60081 447 325923 0.0140003448 19.9260003448 1992 1024 1024 2039808 2088763392
+256	5901529 58089 447 325923 0.0140003448 19.9260003448 1992 128 128 254976 32636928
+257	5959618 58089 447 325923 0.0140003448 19.9260003448 1992 135 135 268920 36304200
+258	6017707 58089 449 325925 0.0140005028 19.9260005028 1992 135 135 268920 36304200
+259	6075796 58089 449 325925 0.0140005028 19.9260005028 1992 128 128 254976 32636928
+260	6133885 58089 451 325927 0.0140005028 19.9260005028 1992 108 108 215136 23234688
+261	6191974 58089 452 325928 0.0140005028 19.9260005028 1992 100 100 199200 19920000
+262	6250063 80001 452 325928 0.0140005028 19.9260005028 1992 0.008795451986 0.014454822611 23.157273498612 0.2851566648641
+263	6330064 57869 452 325928 0.0140005028 19.9260005028 1992 0 995 991020 657706940
+264	6387933 20079 463 325763 0.015 19.915 996 0 0 0 0
+265	6408012 20079 463 325763 0.015 19.915 996 0 0 0 0
+266	6428091 20079 463 325763 0.015 19.915 996 1 1 996 996
+267	6448170 40160 470 325848 0.016 19.922 1992 1 1 1992 1992
+268	6488330 60241 472 325900 0.016 19.926 2988 0 0 0 0
+269	6548571 42152 472 325850 0.016 19.922 1992 34 99 132468 10913172
+270	6590723 42152 480 325858 0.016 19.922 1992 11 11 21912 241032
+271	6632875 68048 490 325872 0.017 19.923 1992 21.359141315826 21.359141315826 42547.409501125 908776.13215684
+272	6700923 46896 516 325897 0.02 19.926 1992 0.004 0.004 7.9679999999996 0.031871999999999
+273	6747819 40920 516 325897 0.02 19.926 1992 34 99 132468 10913172
+274	6788739 40920 520 325900 0.02 19.926 1992 34 99 132468 10913172
+275	6829659 38928 520 325900 0.02 19.926 1992 0 0 0 0
+276	6868587 46896 520 325900 0.02 19.926 1992 0.004 0.004 7.9679999999996 0.031871999999999
+277	6915483 38928 520 325900 0.02 19.926 1992 0 0 0 0
+278	6954411 40163 541 325941 0.021 19.927 1992 0 0 0 0
+279	6994574 40163 541 325941 0.021 19.927 1992 0 0 0 0
+280	7034737 40163 541 325941 0.021 19.927 1992 1 1 1992 1992
+281	7074900 33903 605 325900 0.026 19.926 996 4961.5384615385 6448.0578139115 6410512.3110125 41263761955.884
+282	7108803 20081 605 325900 0.026 19.926 996 0 0 0 0
+283	7128884 33029 605 325900 0.026 19.926 996 0.014454319811 0.014454319811 14.396502531756 0.20809165175388
+284	7161913 22073 605 325900 0.026 19.926 996 129 129 128484 16574436
+285	7183986 22074 606 325901 0.026 19.926 996 129 129 128484 16574436
+286	7206060 22074 606 325901 0.026 19.926 996 128 128 127488 16318464
+287	7228134 22074 610 325905 0.026 19.926 996 144 144 143424 20653056
+288	7250208 23070 612 325907 0.026 19.926 996 1312 1312 1306752 1714458624
+289	7273278 20082 612 325907 0.026 19.926 996 0 0 0 0
+290	7293360 23070 612 325907 0.026 19.926 996 1312 1312 1306752 1714458624
+291	7316430 22074 612 325907 0.026 19.926 996 164 164 163344 26788416
+292	7338504 22074 612 325907 0.026 19.926 996 171 171 170316 29124036
+293	7360578 29046 625 325915 0.0260001868 19.9260001868 996 171 171 170316 29124036
+294	7389624 29046 625 325915 0.0260001868 19.9260001868 996 164 164 163344 26788416
+295	7418670 4396 1922 326712 0.1 20 200 26240 65600 13067520 855507968000
+296	7423066 4396 1922 326712 0.1 20 200 26240 65600 13067520 855507968000
+297	7427462 4594 1935 326712 0.1 20 200 30720 102400 20398080 2085617664000
+298	7432056 4594 1935 326712 0.1 20 200 30720 102400 20398080 2085617664000
+299	7436650 4594 1939 326712 0.1 20 200 30720 102400 20398080 2085617664000
+300	7441244 4594 1939 326712 0.1 20 200 30720 102400 20398080 2085617664000
+301	7445838 4396 2059 326712 0.1 20 200 13120 65600 13067520 856540774400
+302	7450234 4396 2059 326712 0.1 20 200 13120 65600 13067520 856540774400
+303	7454630 3661 326712 326712 0.1 20 200 0 0 0 0
+304	7458291 3661 326712 326712 0.1 20 200 0 0 0 0
+305	7461952 3661 326712 326712 0.1 20 200 0 0 0 0
+306	7465613 3661 326712 326712 0.1 20 200 0 0 0 0
+307	7469274 3661 326712 326712 0.1 20 200 0 0 0 0
+308	7472935 3661 326712 326712 0.1 20 200 0 0 0 0
+309	7476596 3661 326712 326712 0.1 20 200 0 0 0 0
+310	7480257 3661 326712 326712 0.1 20 200 0 0 0 0
+311	7483918 3665 326712 326712 0.1 20 200 0 79360 79360 6298009600
+312	7487583 3665 326712 326712 0.1 20 200 0 79360 79360 6298009600
+313	7491248 3661 326712 326712 0.1 20 200 0 0 0 0
+314	7494909 3661 326712 326712 0.1 20 200 0 0 0 0
+315	7498570 3665 326712 326712 0.1 20 200 0 79360 79360 6298009600
+316	7502235 3665 326712 326712 0.1 20 200 0 79360 79360 6298009600
+317	7505900 3661 326712 326712 0.1 20 200 0 0 0 0
+318	7509561 3661 326712 326712 0.1 20 200 0 0 0 0
+319	7513222 20 326712 326712 20 20 1 4980 4980 4980 24800400
+320	7513242 20 326712 326712 20 20 1 4980 4980 4980 24800400
+
