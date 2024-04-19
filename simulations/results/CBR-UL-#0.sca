@@ -1,8 +1,8 @@
 version 3
-run CBR-UL-0-20240419-03:18:02-124292
+run CBR-UL-0-20240419-12:15:21-155813
 attr configname CBR-UL
-attr datetime 20240419-03:18:02
-attr datetimef 20240419-031802
+attr datetime 20240419-12:15:21
+attr datetimef 20240419-121521
 attr experiment CBR-UL
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Eastleigh_5GNet
-attr processid 124292
+attr processid 155813
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -1921,7 +1921,7 @@ attr recordingmode mean
 attr source cbrFrameDelaySignal
 attr title "Cbr Frame Delay, mean"
 attr unit s
-scalar Eastleigh_5GNet.server.app[2] cbrFrameLoss:mean 1
+scalar Eastleigh_5GNet.server.app[2] cbrFrameLoss:mean 0
 attr recordingmode mean
 attr source cbrFrameLossSignal
 attr title "Cbr Frame Loss, mean"
