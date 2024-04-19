@@ -31,13 +31,12 @@ import simu5g.world.radio.ChannelControl;
 import simu5g.world.radio.LteChannelControl;
 import inet.networklayer.ipv4.RoutingTableRecorder;
 
-
 network Eastleigh_5GNet
 {
     @display("bgi=background/eastleigh,c;bgb=700,700;bgu=m");
     submodules:
         channelControl: LteChannelControl {      // Use LteChannelControl to prevent deletion of d2d parameter from predefined class
-            @display("p=173.184,46.464");
+            @display("p=40.559998,383.63");
         }
         configurator: Ipv4NetworkConfigurator {
             @display("p=40.832,278.784");
@@ -47,6 +46,9 @@ network Eastleigh_5GNet
         }
         carrierAggregation: CarrierAggregation {
             @display("p=40.832,47.872");
+        }
+        bgCell: BackgroundCell {
+            @display("p=178.81601,594.176;is=l");
         }
         server: StandardHost {
             @display("p=230.912,229.50401");
@@ -84,32 +86,26 @@ network Eastleigh_5GNet
         gnb8: gNodeB {
             @display("p=588.12,605.01996;r=150");
         }
-
-        bgCell: BackgroundCell {
-            @display("p=178.81601,594.176;is=l");
+        nrUe0: NRUe {
+            @display("p=141.95999,537.42");
         }
-        nrUe: NRUe {
-            @display("p=40.559998,537.42");
+        nrUe1: NRUe {
+            @display("p=142.20801,284.41602");
         }
-//        nrUe1: NRUe {
-//            @display("p=142.20801,284.41602");
-//        }
-//        nrUe2: NRUe {
-//            @display("p=137.98401,235.136");
-//        }
-//        nrUe3: NRUe {
-//            @display("p=489.984,133.76001");
-//        }
-//        nrUe4: NRUe {
-//            @display("p=332.28802,473.088");
-//        }
-
+        nrUe2: NRUe {
+            @display("p=137.98401,235.136");
+        }
+        nrUe3: NRUe {
+            @display("p=489.984,133.76001");
+        }
+        nrUe4: NRUe {
+            @display("p=332.28802,473.088");
+        }
 
     connections:
         // Server -> 5GC (ppp)
         server.pppg++ <--> Eth10G <--> router.pppg++;
         router.pppg++ <--> Eth10G <--> upf.filterGate;
-
 
         // BS -> 5GC (ppp)
         upf.pppg++ <--> Eth10G <--> gnb0.ppp;
