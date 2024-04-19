@@ -63,33 +63,33 @@ network Eastleigh_5GNet
         gnb1: gNodeB {
             @display("p=343.06998,106.46999;r=150");
         }
-//        gnb2: gNodeB {
-//            @display("p=588.12,106.46999;r=150");
-//        }
-//        gnb3: gNodeB {
-//            @display("p=98.02,354.9;r=150");
-//        }
-//        gnb4: gNodeB {
-//            @display("p=343.06998,354.9;r=150");
-//        }
-//        gnb5: gNodeB {
-//            @display("p=588.12,354.9;r=150");
-//        }
-//        gnb6: gNodeB {
-//            @display("p=98.02,605.01996;r=150");
-//        }
-//        gnb7: gNodeB {
-//            @display("p=343.06998,605.01996;r=150");
-//        }
-//        gnb8: gNodeB {
-//            @display("p=588.12,605.01996;r=150");
-//        }
+        gnb2: gNodeB {
+            @display("p=588.12,106.46999;r=150");
+        }
+        gnb3: gNodeB {
+            @display("p=98.02,354.9;r=150");
+        }
+        gnb4: gNodeB {
+            @display("p=343.06998,354.9;r=150");
+        }
+        gnb5: gNodeB {
+            @display("p=588.12,354.9;r=150");
+        }
+        gnb6: gNodeB {
+            @display("p=98.02,605.01996;r=150");
+        }
+        gnb7: gNodeB {
+            @display("p=343.06998,605.01996;r=150");
+        }
+        gnb8: gNodeB {
+            @display("p=588.12,605.01996;r=150");
+        }
 
         bgCell: BackgroundCell {
             @display("p=178.81601,594.176;is=l");
         }
         nrUe: NRUe {
-            @display("p=342.144,367.488");
+            @display("p=40.559998,537.42");
         }
 //        nrUe1: NRUe {
 //            @display("p=142.20801,284.41602");
@@ -114,34 +114,34 @@ network Eastleigh_5GNet
         // BS -> 5GC (ppp)
         upf.pppg++ <--> Eth10G <--> gnb0.ppp;
         upf.pppg++ <--> Eth10G <--> gnb1.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb2.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb3.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb4.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb5.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb6.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb7.ppp;
-//        upf.pppg++ <--> Eth10G <--> gnb8.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb2.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb3.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb4.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb5.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb6.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb7.ppp;
+        upf.pppg++ <--> Eth10G <--> gnb8.ppp;
 
         // BS -> BS (Xn)
         gnb0.x2++ <--> Eth10G <--> gnb1.x2++;
-//        gnb0.x2++ <--> Eth10G <--> gnb3.x2++;
-//        gnb0.x2++ <--> Eth10G <--> gnb4.x2++;
-//        gnb1.x2++ <--> Eth10G <--> gnb2.x2++;
-//        gnb1.x2++ <--> Eth10G <--> gnb4.x2++;
-//        gnb1.x2++ <--> Eth10G <--> gnb3.x2++;
-//        gnb1.x2++ <--> Eth10G <--> gnb5.x2++;
-//        gnb2.x2++ <--> Eth10G <--> gnb5.x2++;
-//        gnb2.x2++ <--> Eth10G <--> gnb4.x2++;
-//        gnb3.x2++ <--> Eth10G <--> gnb4.x2++;
-//        gnb3.x2++ <--> Eth10G <--> gnb6.x2++;
-//        gnb3.x2++ <--> Eth10G <--> gnb7.x2++;
-//        gnb4.x2++ <--> Eth10G <--> gnb5.x2++;
-//        gnb4.x2++ <--> Eth10G <--> gnb7.x2++;
-//        gnb4.x2++ <--> Eth10G <--> gnb6.x2++;
-//        gnb4.x2++ <--> Eth10G <--> gnb8.x2++;
-//        gnb5.x2++ <--> Eth10G <--> gnb8.x2++;
-//        gnb5.x2++ <--> Eth10G <--> gnb7.x2++;
-//        gnb6.x2++ <--> Eth10G <--> gnb7.x2++;
-//        gnb7.x2++ <--> Eth10G <--> gnb8.x2++;
+        gnb0.x2++ <--> Eth10G <--> gnb3.x2++;
+        gnb0.x2++ <--> Eth10G <--> gnb4.x2++;
+        gnb1.x2++ <--> Eth10G <--> gnb2.x2++;
+        gnb1.x2++ <--> Eth10G <--> gnb4.x2++;
+        gnb1.x2++ <--> Eth10G <--> gnb3.x2++;
+        gnb1.x2++ <--> Eth10G <--> gnb5.x2++;
+        gnb2.x2++ <--> Eth10G <--> gnb5.x2++;
+        gnb2.x2++ <--> Eth10G <--> gnb4.x2++;
+        gnb3.x2++ <--> Eth10G <--> gnb4.x2++;
+        gnb3.x2++ <--> Eth10G <--> gnb6.x2++;
+        gnb3.x2++ <--> Eth10G <--> gnb7.x2++;
+        gnb4.x2++ <--> Eth10G <--> gnb5.x2++;
+        gnb4.x2++ <--> Eth10G <--> gnb7.x2++;
+        gnb4.x2++ <--> Eth10G <--> gnb6.x2++;
+        gnb4.x2++ <--> Eth10G <--> gnb8.x2++;
+        gnb5.x2++ <--> Eth10G <--> gnb8.x2++;
+        gnb5.x2++ <--> Eth10G <--> gnb7.x2++;
+        gnb6.x2++ <--> Eth10G <--> gnb7.x2++;
+        gnb7.x2++ <--> Eth10G <--> gnb8.x2++;
 
 }
