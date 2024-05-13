@@ -87,21 +87,14 @@ network Eastleigh_5GNet
             @display("p=588.12,605.01996;r=150");
         }
         nrUe0: NRUe {
-            @display("p=141.95999,537.42");
+            //@display("p=540,616.2"); // ACTUAL
+            @display("p=588.12,605.01996;r=150"); // ON BS
         }
         nrUe1: NRUe {
-            @display("p=142.20801,284.41602");
+            //@display("p=659.5,35.1"); // ACTUAL
+            @display("p=588.12,106.46999;r=150"); // ON BS
+            //@display("p=540,616.2"); // ON UE0
         }
-        nrUe2: NRUe {
-            @display("p=137.98401,235.136");
-        }
-        nrUe3: NRUe {
-            @display("p=489.984,133.76001");
-        }
-        nrUe4: NRUe {
-            @display("p=332.28802,473.088");
-        }
-
     connections:
         // Server -> 5GC (ppp)
         server.pppg++ <--> Eth10G <--> router.pppg++;
