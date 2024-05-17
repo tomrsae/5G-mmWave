@@ -16,6 +16,7 @@
 package _5g_mmwave.simulations;
 
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
+import inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer;
 import ned.IdealChannel;
 import simu5g.common.binder.Binder;
 import simu5g.common.carrierAggregation.CarrierAggregation;
@@ -87,13 +88,13 @@ network Eastleigh_5GNet
             @display("p=588.12,605.01996;r=150");
         }
         nrUe0: NRUe {
-            //@display("p=540,616.2"); // ACTUAL
-            @display("p=588.12,605.01996;r=150"); // ON BS
+            @display("p=540,616.2");
         }
         nrUe1: NRUe {
-            //@display("p=659.5,35.1"); // ACTUAL
-            @display("p=588.12,106.46999;r=150"); // ON BS
-            //@display("p=540,616.2"); // ON UE0
+            @display("p=659.5,35.1");
+        }
+        nrUe2: NRUe {
+            @display("p=245.5,490.2");
         }
     connections:
         // Server -> 5GC (ppp)
