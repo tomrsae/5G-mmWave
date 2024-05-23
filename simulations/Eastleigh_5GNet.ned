@@ -48,9 +48,6 @@ network Eastleigh_5GNet
         carrierAggregation: CarrierAggregation {
             @display("p=40.832,47.872");
         }
-        bgCell: BackgroundCell {
-            @display("p=178.81601,594.176;is=l");
-        }
         server: StandardHost {
             @display("p=230.912,229.50401");
         }
